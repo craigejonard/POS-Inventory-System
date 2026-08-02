@@ -1,0 +1,48 @@
+{{ define "pages/dashboard.html" }}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POS Dashboard</title>
+    <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>POS Inventory Dashboard</h1>
+        </header>
+
+        <section class="stats" hx-get="/api/dashboard/stats" hx-trigger="load, every 30s" hx-swap="innerHTML">
+            <p>Loading stats...</p>
+        </section>
+
+        <section class="inventory">
+            <h2>Inventory</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>SKU</th>
+                        <th>Price</th>
+                        <th>Qty</th>
+                        <th>Category</th>
+                    </tr>
+                </thead>
+                <tbody id="product-list" hx-get="/api/products" hx-trigger="load, every 30s" hx-swap="innerHTML">
+                    <tr><td colspan="5">Loading...</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="recent-sales">
+            <h2>Recent Sales</h2>
+            <div id="sales-list" hx-get="/api/sales" hx-trigger="load, every 30s" hx-swap="innerHTML">
+                <p>Loading...</p>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
+{{ end }}

@@ -1,0 +1,11 @@
+*.db
+*.db-journal
+*.db-wal
+server/pos-inventory-system
+.idea/
+*.iml
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+.DS_Store
